@@ -19,12 +19,12 @@ MonoBehaviour:
   - actorName: 
     profile: {fileID: 0}
     sentence:
-      portuguese: a
+      portuguese: Textando....
       english: 
       spanish: 
   - actorName: 
     profile: {fileID: 0}
     sentence:
-      portuguese: b
+      portuguese: '***************'
       english: 
       spanish: 

@@ -13,9 +13,15 @@ public class DialogueControl : MonoBehaviour {
   [Header("Settings")]
   public float typingSpeed;
 
-  private bool _isShowing;
+  public bool isShowing;
   private int _index;
   private string[] setences;
+
+  public static DialogueControl instance;
+
+  void Awake() {
+    instance = this;  
+  }
 
   // Start is called before the first frame update
   void Start() {
@@ -39,11 +45,12 @@ public class DialogueControl : MonoBehaviour {
   }
 
   public void Speech(string[] texts) {
-    if (!_isShowing) {
+    if (!isShowing) {
+      speechText.text = "";
       dialogueObject.SetActive(true);
       setences = texts;
       StartCoroutine(TypeSentence());
-      _isShowing = true;
+      isShowing = true;
     }
   }
 }
