@@ -15,4 +15,16 @@ MonoBehaviour:
   actors: {fileID: 0}
   speakersSprite: {fileID: 0}
   sentence: 
-  dialogues: []
+  dialogues:
+  - actorName: 
+    profile: {fileID: 0}
+    sentence:
+      portuguese: a
+      english: 
+      spanish: 
+  - actorName: 
+    profile: {fileID: 0}
+    sentence:
+      portuguese: b
+      english: 
+      spanish: 
