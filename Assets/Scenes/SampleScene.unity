@@ -2786,7 +2786,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1289727695}
   - component: {fileID: 1289727696}
-  - component: {fileID: 1289727697}
   m_Layer: 0
   m_Name: hair
   m_TagString: Untagged
@@ -2861,18 +2860,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1289727697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289727694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c79b644146b91d0479687d3b608fb65f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1313916551
 GameObject:
   m_ObjectHideFlags: 0
@@ -16626,7 +16613,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path (1)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -16656,6 +16643,7 @@ GameObject:
   - component: {fileID: 1517992109}
   - component: {fileID: 1517992108}
   - component: {fileID: 1517992110}
+  - component: {fileID: 1517992111}
   m_Layer: 0
   m_Name: NPC_01
   m_TagString: Untagged
@@ -16717,6 +16705,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   dialogue: {fileID: 11400000, guid: c3a1b30f93a44524cba40c7d68503887, type: 2}
+--- !u!114 &1517992111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517992107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79b644146b91d0479687d3b608fb65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  paths:
+  - {fileID: 1658779987}
+  - {fileID: 1479301713}
 --- !u!1 &1658779986
 GameObject:
   m_ObjectHideFlags: 0
@@ -16729,7 +16733,7 @@ GameObject:
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
