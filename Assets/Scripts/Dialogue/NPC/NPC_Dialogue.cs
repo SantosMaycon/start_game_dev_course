@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NPC_Dialogue : MonoBehaviour {
-  public float sizeRange;
+  public float dialogueRange;
   public LayerMask playeLayer;
   public DialogueSettings dialogue;
   bool playerHit;
@@ -42,7 +42,7 @@ public class NPC_Dialogue : MonoBehaviour {
   }
 
   void ShowDialogue() {
-    Collider2D hit = Physics2D.OverlapCircle(transform.position, sizeRange, playeLayer);
+    Collider2D hit = Physics2D.OverlapCircle(transform.position, dialogueRange, playeLayer);
 
     if (hit) {
       playerHit = true;
@@ -54,6 +54,6 @@ public class NPC_Dialogue : MonoBehaviour {
   }
 
   private void OnDrawGizmosSelected() {
-    Gizmos.DrawWireSphere(transform.position, sizeRange);
+    Gizmos.DrawWireSphere(transform.position, dialogueRange);
   }
 }
