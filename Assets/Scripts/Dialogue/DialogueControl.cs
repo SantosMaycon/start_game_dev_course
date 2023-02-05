@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueControl : MonoBehaviour {
+  [System.Serializable]
+  public enum Idiom {
+    pt,
+    eng,
+    es
+  }
+
+  public Idiom language;
+
   [Header("Components")]
   public GameObject dialogueObject;
   public Image profileSprite;
@@ -41,7 +50,17 @@ public class DialogueControl : MonoBehaviour {
   }
 
   public void NextSetence() {
-
+    if (speechText.text == setences[_index]) {
+      if (_index < setences.Length - 1 ) {
+        _index++;
+        speechText.text = "";
+        StartCoroutine(TypeSentence());
+      } else {
+        dialogueObject.SetActive(false);
+        _index = 0;
+        isShowing = false;
+      }
+    }
   }
 
   public void Speech(string[] texts) {

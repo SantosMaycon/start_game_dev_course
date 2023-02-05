@@ -23,7 +23,17 @@ public class NPC_Dialogue : MonoBehaviour {
 
   void GetNPCInfo() {
     for (int i = 0; i < dialogue.dialogues.Count; i++) {
-      sentences.Add(dialogue.dialogues[i].sentence.portuguese);
+      switch (DialogueControl.instance.language) {
+        case DialogueControl.Idiom.pt:
+          sentences.Add(dialogue.dialogues[i].sentence.portuguese);
+          break;
+        case DialogueControl.Idiom.eng:
+          sentences.Add(dialogue.dialogues[i].sentence.english);
+          break;
+        case DialogueControl.Idiom.es:
+          sentences.Add(dialogue.dialogues[i].sentence.spanish);
+          break;
+      }
     }
   }
 
