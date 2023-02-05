@@ -22,6 +22,7 @@ public class Player : MonoBehaviour {
     OnInput();
     OnRun();
     OnRoll();
+    OnCut();
   }
 
   void FixedUpdate() {
@@ -56,6 +57,18 @@ public class Player : MonoBehaviour {
     void OnRoll() {
       if (Input.GetMouseButtonDown(1)) {
         animator.SetTrigger("Rolling");
+      }
+    }
+
+    void OnCut() {
+      if (Input.GetMouseButtonDown(0)) {
+        animator.SetBool("isCut", true);
+        speed = 0f;
+      }
+
+      if (Input.GetMouseButtonUp(0)) {
+        animator.SetBool("isCut", false);
+        speed = initalSpeed;
       }
     }
   #endregion
