@@ -7,10 +7,12 @@ public class NPC : MonoBehaviour {
   private int _index;
   public List<Transform> paths = new List<Transform>();
   private Animator animator;
+  private float _initialSpeed;
 
   // Start is called before the first frame update
   void Start() {
     animator = GetComponent<Animator>();
+    _initialSpeed = speed;
   }
 
   // Update is called once per frame
@@ -27,6 +29,9 @@ public class NPC : MonoBehaviour {
 
     Vector2 direction = paths[_index].position - transform.position;
     transform.localScale = new Vector2(Mathf.Sign(direction.x), 1f);
-    animator.SetBool("isWalk", true);
+
+    speed = GetComponent<NPC_Dialogue>().GetPlayerHit() ? 0f : _initialSpeed;
+    
+    animator.SetBool("isWalk", speed != 0f);
   }
 }

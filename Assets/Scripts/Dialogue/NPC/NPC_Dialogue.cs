@@ -56,4 +56,8 @@ public class NPC_Dialogue : MonoBehaviour {
   private void OnDrawGizmosSelected() {
     Gizmos.DrawWireSphere(transform.position, dialogueRange);
   }
+
+  public bool GetPlayerHit() {
+    return playerHit;
+  }
 }
