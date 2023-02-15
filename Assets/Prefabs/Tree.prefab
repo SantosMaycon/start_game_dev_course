@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 7
   m_Sprite: {fileID: -621990650, guid: a7c6e74a34e019c4b959bc281436e951, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -284,4 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfff57b234f6f984dbb6555385e1ded9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 5
+  woodPrefab: {fileID: 6211462960279601137, guid: c4d3d2ec8993e8c4ea3699ce57d87362, type: 3}
+  totalWood: 3
