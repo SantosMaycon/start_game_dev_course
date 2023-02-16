@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
   private Rigidbody2D rigidbody2d;
   private Animator animator;
   private Vector2 direction;
-  private float initalSpeed;
+  private float initialSpeed;
 
   private string action = "";
 
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
   void Start() {
     rigidbody2d = GetComponent<Rigidbody2D>();
     animator = GetComponent<Animator>();
-    initalSpeed = speed;
+    initialSpeed = speed;
   }
 
   // Update is called once per frame
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
 
       if (Input.GetKeyUp(KeyCode.LeftShift)) {
         animator.SetBool("isRun", false);
-        speed = initalSpeed;
+        speed = initialSpeed;
       }
     }
     void OnRoll() {
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour {
 
       if (Input.GetMouseButtonUp(0) && action != "") {
         animator.SetBool(action, false);
-        speed = initalSpeed;
+        speed = initialSpeed;
       }
     }
   #endregion
