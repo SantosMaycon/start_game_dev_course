@@ -10,6 +10,8 @@ public class Player : MonoBehaviour {
   private Vector2 direction;
   private float initalSpeed;
 
+  private string action = "";
+
   // Start is called before the first frame update
   void Start() {
     rigidbody2d = GetComponent<Rigidbody2D>();
@@ -19,10 +21,11 @@ public class Player : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
+    OnChooseAction();
     OnInput();
     OnRun();
     OnRoll();
-    OnCut();
+    OnAction();
   }
 
   void FixedUpdate() {
@@ -60,16 +63,27 @@ public class Player : MonoBehaviour {
       }
     }
 
-    void OnCut() {
-      if (Input.GetMouseButtonDown(0)) {
-        animator.SetBool("isCut", true);
+    void OnChooseAction() {
+      OnAnimationActionInput(KeyCode.Alpha1, "isCut");      
+      OnAnimationActionInput(KeyCode.Alpha2, "isDig");      
+    }
+
+    void OnAction() {
+      if (Input.GetMouseButtonDown(0) && action != "") {
+        animator.SetBool(action, true);
         speed = 0f;
       }
 
-      if (Input.GetMouseButtonUp(0)) {
-        animator.SetBool("isCut", false);
+      if (Input.GetMouseButtonUp(0) && action != "") {
+        animator.SetBool(action, false);
         speed = initalSpeed;
       }
     }
   #endregion
+
+  void OnAnimationActionInput(KeyCode keyCode, string action) {
+    if (Input.GetKeyDown(keyCode)) {
+      this.action = action;
+    }
+  }
 }
