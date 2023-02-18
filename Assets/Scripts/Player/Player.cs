@@ -8,14 +8,17 @@ public class Player : MonoBehaviour {
   private Rigidbody2D rigidbody2d;
   private Animator animator;
   private Vector2 direction;
+  private bool isAction = false;
   private float initialSpeed;
-
   private string action = "";
+
+  private PlayerItems items;
 
   // Start is called before the first frame update
   void Start() {
     rigidbody2d = GetComponent<Rigidbody2D>();
     animator = GetComponent<Animator>();
+    items = GetComponent<PlayerItems>();
     initialSpeed = speed;
   }
 
@@ -26,6 +29,14 @@ public class Player : MonoBehaviour {
     OnRun();
     OnRoll();
     OnAction();
+
+    if (isAction && items.water > 0) {
+      items.SetWater(-0.01f);
+    }
+
+    if (action == "isWater" && items.water <= 0 && isAction) {
+      isWater();
+    }
   }
 
   void FixedUpdate() {
@@ -65,24 +76,38 @@ public class Player : MonoBehaviour {
 
     void OnChooseAction() {
       OnAnimationActionInput(KeyCode.Alpha1, "isCut");      
-      OnAnimationActionInput(KeyCode.Alpha2, "isDig");      
+      OnAnimationActionInput(KeyCode.Alpha2, "isDig");
+      OnAnimationActionInput(KeyCode.Alpha3, "isWater");
     }
 
     void OnAction() {
       if (Input.GetMouseButtonDown(0) && action != "") {
-        animator.SetBool(action, true);
+        isAction = true;
+        Invoke(action, 0f);
         speed = 0f;
       }
 
       if (Input.GetMouseButtonUp(0) && action != "") {
-        animator.SetBool(action, false);
+        isAction = false;
+        Invoke(action, 0f);
         speed = initialSpeed;
       }
     }
+
+    void isCut() {
+      animator.SetBool(action, isAction);
+    }
+    void isDig() {
+      animator.SetBool(action, isAction);
+    }
+    void isWater() {
+      animator.SetBool(action, isAction && items.water > 0);
+    }
+
   #endregion
 
   void OnAnimationActionInput(KeyCode keyCode, string action) {
-    if (Input.GetKeyDown(keyCode)) {
+    if (Input.GetKeyDown(keyCode) && !isAction) {
       this.action = action;
     }
   }

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerItems : MonoBehaviour {
   public int woods;
-  // Start is called before the first frame update
-  void Start() {}
+  public float water;
+  private float waterLimit = 75f;
 
-  // Update is called once per frame
-  void Update() {}
+  public void SetWater(float value) {
+    water += water <= waterLimit ? value : 0;
+  }
 }
