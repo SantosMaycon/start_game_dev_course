@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerItems : MonoBehaviour {
   public int woods;
+  public int carrots;
   public float water;
   private float waterLimit = 75f;
 
