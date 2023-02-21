@@ -8,41 +8,48 @@ public class Player : MonoBehaviour {
   private Rigidbody2D rigidbody2d;
   private Animator animator;
   private Vector2 direction;
+  private bool isPaused = false;
   private bool isAction = false;
   private float initialSpeed;
   private string action = "";
 
   private PlayerItems items;
+  private Casting casting;
 
   // Start is called before the first frame update
   void Start() {
     rigidbody2d = GetComponent<Rigidbody2D>();
     animator = GetComponent<Animator>();
     items = GetComponent<PlayerItems>();
+    casting = FindObjectOfType<Casting>();
     initialSpeed = speed;
   }
 
   // Update is called once per frame
   void Update() {
-    OnChooseAction();
-    OnInput();
-    OnRun();
-    OnRoll();
-    OnAction();
+    if (!isPaused) {
+      OnChooseAction();
+      OnInput();
+      OnRun();
+      OnRoll();
+      OnAction();
 
-    if (action == "isWater") {
-      if (isAction && items.water > 0) {
-        items.SetWater(-0.01f);
-      }
+      if (action == "isWater") {
+        if (isAction && items.water > 0) {
+          items.SetWater(-0.01f);
+        }
 
-      if (items.water <= 0 && isAction) {
-        isWater();
+        if (items.water <= 0 && isAction) {
+          isWater();
+        }
       }
     }
   }
 
   void FixedUpdate() {
-    OnMove();
+    if (!isPaused) {
+      OnMove();
+    }
   }
 
   #region Movement
@@ -106,6 +113,10 @@ public class Player : MonoBehaviour {
       animator.SetBool(action, isAction && items.water > 0);
     }
 
+    void isCasting() {
+      casting.OnDropFish();
+      speed = initialSpeed;
+    }
   #endregion
 
   void OnAnimationActionInput(KeyCode keyCode, string action) {
@@ -116,5 +127,12 @@ public class Player : MonoBehaviour {
 
   public string GetAction() {
     return action;
+  }
+
+  void StartCasting() {
+    isPaused = true;
+  }
+  void EndtCasting() {
+    isPaused = false;
   }
 }
