@@ -30,12 +30,14 @@ public class Player : MonoBehaviour {
     OnRoll();
     OnAction();
 
-    if (isAction && items.water > 0) {
-      items.SetWater(-0.01f);
-    }
+    if (action == "isWater") {
+      if (isAction && items.water > 0) {
+        items.SetWater(-0.01f);
+      }
 
-    if (action == "isWater" && items.water <= 0 && isAction) {
-      isWater();
+      if (items.water <= 0 && isAction) {
+        isWater();
+      }
     }
   }
 
