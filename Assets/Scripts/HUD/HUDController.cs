@@ -8,6 +8,7 @@ public class HUDController : MonoBehaviour {
   [SerializeField] private Image waterUiBar;
   [SerializeField] private Image woodUiBar;
   [SerializeField] private Image carrotUiBar;
+  [SerializeField] private Image fishUiBar;
   [Header("Tools")]
   [SerializeField] private Image[] tools;
   [SerializeField] private Color selectedColor;
@@ -24,6 +25,7 @@ public class HUDController : MonoBehaviour {
     waterUiBar.fillAmount = 0f;
     woodUiBar.fillAmount = 0f;
     carrotUiBar.fillAmount = 0f;
+    fishUiBar.fillAmount = 0f;
   }
 
   // Update is called once per frame
@@ -32,6 +34,7 @@ public class HUDController : MonoBehaviour {
       waterUiBar.fillAmount = items.water / items.waterLimit;
       woodUiBar.fillAmount = items.woods / items.woodLimit;
       carrotUiBar.fillAmount = items.carrots / items.carrotLimit;
+      fishUiBar.fillAmount = items.fish / items.fishLimit;
 
       foreach (var tool in tools) {
         var tag = player.GetAction();
