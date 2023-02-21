@@ -155,6 +155,12 @@ MonoBehaviour:
   waterUiBar: {fileID: 1891532052}
   woodUiBar: {fileID: 1224400082}
   carrotUiBar: {fileID: 901401005}
+  tools:
+  - {fileID: 1915758127}
+  - {fileID: 1884207163}
+  - {fileID: 1713857074}
+  selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  unselectedColor: {r: 1, g: 1, b: 1, a: 0.49019608}
 --- !u!4 &17478516
 Transform:
   m_ObjectHideFlags: 0
@@ -2951,7 +2957,7 @@ RectTransform:
   - {fileID: 1209131143}
   - {fileID: 1156721331}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5213,7 +5219,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1267391149
 GameObject:
@@ -19467,7 +19473,7 @@ Transform:
   - {fileID: 1289727695}
   - {fileID: 542033729}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1517992110
 MonoBehaviour:
@@ -19902,7 +19908,7 @@ GameObject:
   - component: {fileID: 1713857074}
   m_Layer: 5
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: isWater
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20431,7 +20437,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1857827721
 GameObject:
@@ -23797,7 +23803,7 @@ GameObject:
   - component: {fileID: 1884207163}
   m_Layer: 5
   m_Name: Shovel
-  m_TagString: Untagged
+  m_TagString: isDig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24026,7 +24032,7 @@ GameObject:
   - component: {fileID: 1915758127}
   m_Layer: 5
   m_Name: Axe
-  m_TagString: Untagged
+  m_TagString: isCut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

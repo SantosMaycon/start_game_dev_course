@@ -8,6 +8,9 @@ TagManager:
   - Wood
   - Dig
   - Water
+  - isCut
+  - isDig
+  - isWater
   layers:
   - Default
   - TransparentFX

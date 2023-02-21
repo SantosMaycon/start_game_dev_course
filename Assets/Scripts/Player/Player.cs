@@ -113,4 +113,8 @@ public class Player : MonoBehaviour {
       this.action = action;
     }
   }
+
+  public string GetAction() {
+    return action;
+  }
 }
