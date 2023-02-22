@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
   private Rigidbody2D rigidbody2d;
   private Animator animator;
   private Vector2 direction;
-  private bool isPaused = false;
+  [HideInInspector] public bool isPaused = false;
   private bool isAction = false;
   private float initialSpeed;
   private string action = "";
