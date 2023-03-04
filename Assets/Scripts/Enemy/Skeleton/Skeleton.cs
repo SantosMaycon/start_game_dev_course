@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Skeleton : MonoBehaviour {
+  [SerializeField] private float health;
+  [SerializeField] private Image healthBar;
+  private float currentHealth;
   private NavMeshAgent navMeshAgent;
   private Player player;
   private AnimatorController animator;
@@ -19,6 +23,7 @@ public class Skeleton : MonoBehaviour {
 
     animator = FindObjectOfType<AnimatorController>();
     recoveryTime = timeToAttacks;
+    currentHealth = health;
   }
 
   // Update is called once per frame
@@ -37,12 +42,24 @@ public class Skeleton : MonoBehaviour {
 
     if (isCloseToThePlayer) {
       animator.Play(0);
-      if(recoveryTime >= timeToAttacks) {
+      if(recoveryTime >= timeToAttacks && !navMeshAgent.isStopped) {
         animator.PlayTrigger("attack");
         recoveryTime = 0f;
       }
     } else {
       animator.Play(1);
+    }
+  }
+
+  public void OnHit() {
+    animator.PlayTrigger("hit"); 
+    currentHealth--;
+    healthBar.fillAmount = currentHealth / health;
+
+    if (currentHealth <= 0f) {
+      animator.PlayTrigger("death");
+      navMeshAgent.isStopped = true;
+      Destroy(gameObject, 1.5f);
     }
   }
 }

@@ -16,6 +16,11 @@ public class Player : MonoBehaviour {
   private PlayerItems items;
   private Casting casting;
 
+  [Header("Attack Settings")]
+  [SerializeField] private Transform pointOfAttack;
+  [SerializeField] private float attackRadius;
+  [SerializeField] private LayerMask enemyLayer;
+
   // Start is called before the first frame update
   void Start() {
     rigidbody2d = GetComponent<Rigidbody2D>();
@@ -138,5 +143,17 @@ public class Player : MonoBehaviour {
 
   public void OnHit() {
     animator.SetTrigger("Hit");
+  }
+
+  public void Attack() {
+    Collider2D hit = Physics2D.OverlapCircle(pointOfAttack.position, attackRadius, enemyLayer);
+
+    if (hit) {
+      hit.GetComponent<Skeleton>()?.OnHit();
+    }
+  }
+
+  private void OnDrawGizmosSelected() {
+    Gizmos.DrawWireSphere(pointOfAttack.position, attackRadius);
   }
 }
