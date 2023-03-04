@@ -19,11 +19,15 @@ public class AnimatorController : MonoBehaviour {
     animator.SetInteger("Transition", value);
   }
 
+  public void PlayTrigger(string value) {
+    animator.SetTrigger(value);
+  }
+
   public void Attack() {
     Collider2D hit = Physics2D.OverlapCircle(pointOfAttack.position, attackRadius, playerLayer);
 
     if (hit) {
-      Debug.Log("Hit!!!");
+      hit.GetComponent<Player>()?.OnHit();
     }
   }
 

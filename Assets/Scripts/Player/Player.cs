@@ -135,4 +135,8 @@ public class Player : MonoBehaviour {
   void EndtCasting() {
     isPaused = false;
   }
+
+  public void OnHit() {
+    animator.SetTrigger("Hit");
+  }
 }

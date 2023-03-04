@@ -7,6 +7,9 @@ public class Skeleton : MonoBehaviour {
   private NavMeshAgent navMeshAgent;
   private Player player;
   private AnimatorController animator;
+
+  [SerializeField] private float timeToAttacks;
+  private float recoveryTime;
   // Start is called before the first frame update
   void Start() {
     player = FindObjectOfType<Player>();
@@ -15,6 +18,7 @@ public class Skeleton : MonoBehaviour {
     navMeshAgent.updateUpAxis = false;
 
     animator = FindObjectOfType<AnimatorController>();
+    recoveryTime = timeToAttacks;
   }
 
   // Update is called once per frame
@@ -28,7 +32,15 @@ public class Skeleton : MonoBehaviour {
     }
 
     if (isCloseToThePlayer) {
-      animator.Play(2);    
+      recoveryTime += Time.deltaTime;
+    }
+
+    if (isCloseToThePlayer) {
+      animator.Play(0);
+      if(recoveryTime >= timeToAttacks) {
+        animator.PlayTrigger("attack");
+        recoveryTime = 0f;
+      }
     } else {
       animator.Play(1);
     }
