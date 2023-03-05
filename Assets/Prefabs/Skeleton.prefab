@@ -253,6 +253,10 @@ MonoBehaviour:
   health: 5
   healthBar: {fileID: 6185802663168925058}
   timeToAttacks: 1.8
+  areaDetcting: 4.5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!195 &6185802663850649757
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -374,7 +378,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.081
   m_Pitch: 1
   Loop: 0

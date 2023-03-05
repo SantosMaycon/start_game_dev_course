@@ -14,6 +14,10 @@ public class Skeleton : MonoBehaviour {
 
   [SerializeField] private float timeToAttacks;
   private float recoveryTime;
+
+  [SerializeField] private float areaDetcting;
+  [SerializeField] private LayerMask playerLayer;
+  private bool isStartFollow;
   // Start is called before the first frame update
   void Start() {
     player = FindObjectOfType<Player>();
@@ -28,27 +32,35 @@ public class Skeleton : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
-    navMeshAgent.SetDestination(player.transform.position);
-    bool isCloseToThePlayer = Vector2.Distance(transform.position, player.transform.position) <= navMeshAgent.stoppingDistance;
-   
+    if (isStartFollow) {
+      navMeshAgent.SetDestination(player.transform.position);
+      bool isCloseToThePlayer = Vector2.Distance(transform.position, player.transform.position) <= navMeshAgent.stoppingDistance;
     
-    if(navMeshAgent.velocity.x != 0) {
-      transform.localScale = new Vector3(Mathf.Sign(navMeshAgent.velocity.x), 1f, 1f);
-    }
+      
+      if(navMeshAgent.velocity.x != 0) {
+        transform.localScale = new Vector3(Mathf.Sign(navMeshAgent.velocity.x), 1f, 1f);
+      }
 
-    if (isCloseToThePlayer) {
-      recoveryTime += Time.deltaTime;
-    }
+      if (isCloseToThePlayer) {
+        recoveryTime += Time.deltaTime;
+      }
 
-    if (isCloseToThePlayer) {
-      animator.Play(0);
-      if(recoveryTime >= timeToAttacks && !navMeshAgent.isStopped) {
-        animator.PlayTrigger("attack");
-        recoveryTime = 0f;
+      if (isCloseToThePlayer) {
+        animator.Play(0);
+        if(recoveryTime >= timeToAttacks && !navMeshAgent.isStopped) {
+          animator.PlayTrigger("attack");
+          recoveryTime = 0f;
+        }
+      } else {
+        animator.Play(1);
       }
     } else {
-      animator.Play(1);
+      animator.Play(0);
     }
+  }
+
+  void FixedUpdate() {
+    OnDetectingPlayer();
   }
 
   public void OnHit() {
@@ -61,5 +73,16 @@ public class Skeleton : MonoBehaviour {
       navMeshAgent.isStopped = true;
       Destroy(gameObject, 1.5f);
     }
+  }
+
+  public void OnDetectingPlayer() {
+    Collider2D hit = Physics2D.OverlapCircle(transform.position, areaDetcting, playerLayer);
+
+    isStartFollow = hit ? true : false;   
+    navMeshAgent.isStopped = !isStartFollow; 
+  }
+
+  private void OnDrawGizmosSelected() {
+    Gizmos.DrawWireSphere(transform.position, areaDetcting);
   }
 }
