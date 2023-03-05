@@ -10,17 +10,25 @@ public class SlotFarm : MonoBehaviour {
   [Header("Settings")]
   [SerializeField] private int digAmount; // Quantidade de cavadas para aparecer o buraco
   [SerializeField] private float waterAmount; // Quantidade de agua para aparecer a cenoura
+  
+  [Header("SFX")]
+  [SerializeField] private AudioClip holeSound;
+  [SerializeField] private AudioClip carrotSound;
+  private AudioSource audioSource;
   private bool detecting;
   private bool detectingPlayer;
   private float currentWater;
   private PlayerItems items;
 
   private SpriteRenderer spriteRenderer;
-  
+
+  private bool isHole;
+
   // Start is called before the first frame update
   void Start() {
     items = FindObjectOfType<PlayerItems>();
     spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+    audioSource = GetComponent<AudioSource>();
   }
 
   // Update is called once per frame
@@ -30,14 +38,18 @@ public class SlotFarm : MonoBehaviour {
         currentWater += 0.01f;
       }
 
-      if (currentWater >= waterAmount && detectingPlayer) {
+      if (currentWater >= waterAmount && detectingPlayer && !isHole) {
+        audioSource.PlayOneShot(holeSound);
         spriteRenderer.sprite = carrot;
+        isHole = true;
+      }
 
-        if (Input.GetKeyDown(KeyCode.E)) {
-          spriteRenderer.sprite = hole;
-          items.carrots++;
-          currentWater = 0f;
-        }
+      if (Input.GetKeyDown(KeyCode.E) && detectingPlayer) {
+        audioSource.PlayOneShot(carrotSound);
+        spriteRenderer.sprite = hole;
+        items.carrots++;
+        currentWater = 0f;
+        isHole = false;
       }
     }
   }
